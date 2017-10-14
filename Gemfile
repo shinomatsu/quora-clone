@@ -24,6 +24,8 @@ gem 'rake'
 # Adding rspec for running unit testing
 gem 'rspec'
 
+gem 'sinatra-flash'
+
 group :development, :test do
 	# Adding shotgun for local web hosting
 	gem 'shotgun'
