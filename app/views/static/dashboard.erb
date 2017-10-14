@@ -1,3 +1,40 @@
 <div id="main">
-<p>asd</p>
-</div>s
+<!-- logout -->
+<!-- <section class="logout">
+<form action= '/logout' method="post">
+	<p class = "bottun"><input type="submit" value="logout"></p>
+</section> -->
+
+<!-- create question -->
+<section class="question">
+<p>question</p>
+ <form action= '/questions' method="post">
+	<p><input type="text" name="description" class="form"
+	placeholder="what is your question ?"></p>
+	<p class = "bottun"><input type="submit" value="post"></p>
+</form>
+<!-- display all question -->
+<section class="all_posted_question">
+
+<% @posted_questions.reverse_each  do |question| %>
+      <div class="posted_questions">
+        <a href="./questions/<%= question.id %>">
+          <%= question.question_description%></a>
+      </div>
+  <% end %>
+	
+
+</section>
+
+<!-- if sign up is faild, display the messages
+ -->
+<p class="error">
+<%if @question  %>
+
+<section class="message"><%= @errors if @errors%></section>
+
+<% end %>
+</p>
+
+</div>
+

@@ -32,14 +32,14 @@
 
 <!-- if sign up is faild, display the messages
  -->
-<p class="message">
+<section class="message">
 <%if @user  %>
 <!-- <section class="message"><%= @messages if @messages%></section>
  -->
-<section class="message"><%= @messages if @messages%></section>
+<section class="error"><%= @messages if @messages%></section>
 
-
+<%else @user == nil%>
+<section class="error"><%= @messages if @messages%></section>
 <% end %>
-</p>
-</div>
+</section>
 
