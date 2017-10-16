@@ -18,10 +18,18 @@ post '/questions' do
 
 end
 
+
 get '/questions/:id' do
-  @question_id = params[:id]
-  erb :'static/new'
+
+if logged_in?
+
+    erb :'static/new'
+  else
+    redirect '/login'
+  end
+
 end
+
 
 get '/dashboard' do
    all_posted
@@ -33,3 +41,28 @@ get '/dashboard' do
   end
    # @current_user 
 end
+
+get '/questions/:id/edit' do 
+  erb :'questions/edit'
+end
+
+post '/questions/:id' do
+  @question_object = Question.find(params[:id])
+  if @question_object.update(params[:question])
+      redirect "/questions/#{@question_object.id}"
+  else
+
+  end
+
+end
+
+get '/questions/:id/delete' do
+  @question_object = Question.find(params[:id])
+    if @question_object.destroy
+        redirect "/dashboard"
+    else
+
+    end
+
+end
+ 

@@ -1,0 +1,32 @@
+<div id="main">
+
+<!-- display question -->
+<p>now</p>
+<section class="special_posted_question">
+      <div class="posted_questions">
+      <% @posted_qusetion = Question.find(params[:id])%>
+      <p><%=@posted_qusetion.question_description %></p>
+      </div>
+</section>
+<!-- edit question (update,delete)-->
+<section class="edit">
+
+ <form action= '/questions/<%= params[:id] %>' method="post">
+	<input type="text" name="question[question_description]" class="form"
+	placeholder="edit?">
+	<p class = "bottun"><input type="submit" value="edit"></p>
+
+</form>
+
+<section class="delete">
+<p>delete?</p>
+<form action= '/questions/<%= params[:id] %>/delete' method="get">
+<p class = "bottun"><input type="submit" value="delete"></p>
+</form>
+</section>
+
+	
+
+</section>
+
+</div>

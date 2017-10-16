@@ -19,17 +19,6 @@ post '/questions/:id/answers' do
   end
 end
 
-get '/questions/:id' do
-
-if logged_in?
-
-    erb :'static/new'
-  else
-    redirect '/login'
-  end
-
-end
-
 get '/questions/:question_id/answers/:id' do
 
 if logged_in?
@@ -38,6 +27,30 @@ if logged_in?
   else
     redirect '/login'
   end
+
+end
+
+get '/answers/:id/edit' do 
+  erb :'answers/edit'
+end
+
+post '/answers/:id' do
+  @answer_object = Answer.find(params[:id])
+  if @answer_object.update(params[:answer])
+      redirect "/answer/#{@answer_object.id}"
+  else
+
+  end
+
+end
+
+get '/answers/:id/delete' do
+  @answer_object = Answer.find(params[:id])
+    if @answer_object.destroy
+        redirect "/dashboard"
+    else
+
+    end
 
 end
 

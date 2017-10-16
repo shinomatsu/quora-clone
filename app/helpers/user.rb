@@ -19,3 +19,8 @@ def all_posted
 @posted_questions = Question.all
   
 end
+
+def edit_user
+
+end
+

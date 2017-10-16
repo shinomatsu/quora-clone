@@ -10,7 +10,7 @@
     <p>go dashboard</p>
     <form action= '/dashboard' method="get">
 	<p class = "bottun"><input type="submit" value="dashboard"></p>
-
+    </form>
     </section>
 
     <!-- logout -->
@@ -20,29 +20,50 @@
 	</form>
 	</section>
 
-	 <!-- all user's question -->
+	 <!-- all user's question and edit-->
 	 <section class="user_question">
 	 <h4>my all question</h4>
 
 	  <div class="posted_question">
 	  <% @user.questions.each do |questions| %>
 	  <p><%= questions.question_description %></p>
+
+	  <div class="edit">
+	  <% if current_user.id == @user.id %> 
+      <form action= '/questions/<%= questions.id %>/edit' method="get">
+            <p class = "bottun"><input type="submit" value="edit"></p>
+      </form>
+      <% end %>
+      </div>
+
 	  <% end%>
-	  </div>
 	 	
 	 </section>
 
-     <!-- all user's answer -->
+	      <!-- all user's answer -->
 	 <section class="user_answer">
 	 <h4>my all answer</h4>
 	 <div class="posted_answer">
 	  <% @user.answers.each do |answers| %>
 	  <p><%= answers.answer_description %></p>
-	  <% end%>
-	  </div>
+	 
+	
+	    <div class="edit">
+	    <% if current_user.id == @user.id %> 
+	      <form action= '/answers/<%= answers.id %>/edit' method="get">
+	            <p class = "bottun"><input type="submit" value="edit"></p>
+	      </form>
+	    <% end %>
+      </div> 
+
+
+     <% end%>
+	
 
 	 	
 	 </section>
+
+
 
 	
 </div>

@@ -18,13 +18,13 @@
 <section class="special_posted_question">
       <div class="posted_questions">
       <% @posted_qusetion = Question.find(params[:id])%>
-      <p><%=@posted_qusetion.user.first_name %>
-      	 <%=@posted_qusetion.user.last_name %>
+      <p>
+            <a href="/users/<%= @posted_qusetion.user.id %>">
+                  <%=@posted_qusetion.user.first_name %> <%=@posted_qusetion.user.last_name %>
+            </a>
       </p>
       <p><%=@posted_qusetion.question_description %></p>
       </div>
-	
-
 </section>
 
 
@@ -50,7 +50,7 @@
       <div class="posted_answer">
       <% @posted_answer = Answer.where("question_id = ?",params[:id])%>
       <% @posted_answer.each do |answers| %>
-      	<p><%= answers.answer_description %>
+      	<p><%= answers.answer_description %>/
       	<%= answers.user.first_name %>
       	<%= answers.user.last_name %></p>
       	<% end%>
@@ -60,6 +60,13 @@
 
 </section>
 
+
+<section class="dashboard">
+    <p>go back dashboard</p>
+    <form action= '/dashboard' method="get">
+      <p class = "bottun"><input type="submit" value="dashboard"></p>
+
+    </section>
 </div>
 
 

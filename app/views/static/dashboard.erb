@@ -15,7 +15,7 @@
 	placeholder="what is your question ?"></p>
 	<p class = "bottun"><input type="submit" value="post"></p>
 </form>
-<!-- display all question -->
+<!-- display all question and answerform-->
 <section class="all_posted_question">
 
 <% @posted_questions.reverse_each  do |question| %>
@@ -23,6 +23,15 @@
         <a href="./questions/<%= question.id %>">
           <%= question.question_description%></a>
       </div>
+
+      
+    <form action= '/questions/<%= question.id %>/answers' method="post">
+	<p><input type="text" name="description" class="form"
+	placeholder="what is your answer ?">
+	<input type="hidden" value=<%= question.id %> name="question_id"><p>
+	<p class = "post_bottun"><input type="submit" value="post answer"></p>
+
+     </form>
 
   <% end %>
 	
