@@ -1,9 +1,11 @@
 <div id="main">
 <!-- logout -->
-<!-- <section class="logout">
+<section class="logout">
 <form action= '/logout' method="post">
 	<p class = "bottun"><input type="submit" value="logout"></p>
-</section> -->
+</form>
+</section>
+
 
 <!-- create question -->
 <section class="question">
@@ -21,6 +23,7 @@
         <a href="./questions/<%= question.id %>">
           <%= question.question_description%></a>
       </div>
+
   <% end %>
 	
 

@@ -1,5 +1,11 @@
 <div id="main">
-	<p>name:</p>
+	<p>name:
+	 <% @user = User.find(params[:id])%>
+     <%=@user.first_name %>
+        <%=@user.last_name %>
+     </p>
+
+    <!-- go dashboard -->
 	<section class="dashboard">
     <p>go dashboard</p>
     <form action= '/dashboard' method="get">
@@ -7,5 +13,41 @@
 
     </section>
 
+    <!-- logout -->
+	<section class="logout">
+	<form action= '/logout' method="post">
+		<p class = "bottun"><input type="submit" value="logout"></p>
+	</form>
+	</section>
+
+	 <!-- all user's question -->
+	 <section class="user_question">
+	 <h4>my all question</h4>
+
+	  <div class="posted_question">
+	  <% @user.questions.each do |questions| %>
+	  <p><%= questions.question_description %></p>
+	  <% end%>
+	  </div>
+	 	
+	 </section>
+
+     <!-- all user's answer -->
+	 <section class="user_answer">
+	 <h4>my all answer</h4>
+	 <div class="posted_answer">
+	  <% @user.answers.each do |answers| %>
+	  <p><%= answers.answer_description %></p>
+	  <% end%>
+	  </div>
+
+	 	
+	 </section>
+
 	
 </div>
+
+
+
+
+

@@ -10,21 +10,21 @@ post '/questions' do
     redirect "/questions/#{@question.id}"
   else
     @errors = @question.errors.full_messages.join(" ,") #capturing error messages thrown from validation tests udner app/models/question.rb
-
-    #flash[:error] = @errors
-    #redirect "/questions/dashboard"
+    all_posted
     erb :'static/dashboard'
+
     
   end
 
 end
 
 get '/questions/:id' do
+  @question_id = params[:id]
   erb :'static/new'
 end
 
 get '/dashboard' do
-   @posted_questions = Question.all
+   all_posted
   
   if logged_in?
     erb :'static/dashboard'
