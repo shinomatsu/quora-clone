@@ -10,22 +10,29 @@ post '/questions' do
     redirect "/questions/#{@question.id}"
   else
     @errors = @question.errors.full_messages.join(" ,") #capturing error messages thrown from validation tests udner app/models/question.rb
-
-    #flash[:error] = @errors
-    #redirect "/questions/dashboard"
+    all_posted
     erb :'static/dashboard'
+
     
   end
 
 end
 
+
 get '/questions/:id' do
-  erb :'static/new'
+
+if logged_in?
+
+    erb :'questions/new'
+  else
+    redirect '/login'
+  end
+
 end
 
+
 get '/dashboard' do
-   @posted_questions = Question.all
-  
+   all_posted
   if logged_in?
     erb :'static/dashboard'
   else
@@ -33,3 +40,28 @@ get '/dashboard' do
   end
    # @current_user 
 end
+
+get '/questions/:id/edit' do 
+  erb :'questions/edit'
+end
+
+post '/questions/:id' do
+  @question_object = Question.find(params[:id])
+  if @question_object.update(params[:question])
+      redirect "/questions/#{@question_object.id}"
+  else
+
+  end
+
+end
+
+get '/questions/:id/delete' do
+  @question_object = Question.find(params[:id])
+    if @question_object.destroy
+        redirect "/dashboard"
+    else
+
+    end
+
+end
+ 

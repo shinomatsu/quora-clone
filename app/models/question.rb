@@ -5,4 +5,5 @@ class Question <ActiveRecord::Base
      validates :question_description, presence:true
      validates :question_description, length: { in: 1..500 , message:"is not good."}
 
+
 end

@@ -13,3 +13,11 @@ helpers do
     !current_user.nil?
   end
 end
+
+
+def all_posted
+@posted_questions = Question.all
+  
+end
+
+

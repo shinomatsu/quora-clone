@@ -33,13 +33,25 @@ end
 
 
 
-get "/users/:id" do
-	@user = User.find(params[:id])
-    erb :"users/profile"
-end
 
 get '/login' do
   @user = nil
   @messages = "Plese, login."
   erb :"static/index"
+end
+
+
+
+get "/users/:id" do
+
+	if logged_in?
+
+   @user = User.find(params[:id])
+   erb :"users/profile"
+   
+  else
+    redirect '/login'
+  end
+
+	
 end
