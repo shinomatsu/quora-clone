@@ -20,7 +20,4 @@ def all_posted
   
 end
 
-def edit_user
-
-end
 

@@ -4,30 +4,35 @@
 <form action= '/logout' method="post">
 	<p class = "bottun"><input type="submit" value="logout"></p>
 </form>
+
+<a class= "mypage" href="/users/<%= params[:id]%>">
+      go to my page
+</a>
+
 </section>
-
-
 <!-- create question -->
 <section class="question">
-<p>question</p>
+<h2>What is your question?</h2>
  <form action= '/questions' method="post">
 	<p><input type="text" name="description" class="form"
 	placeholder="what is your question ?"></p>
-	<p class = "bottun"><input type="submit" value="post"></p>
+	<p class = "bottun_post"><input type="submit" value="post"></p>
 </form>
 <!-- display all question and answerform-->
+<!-- all question-->
 <section class="all_posted_question">
 
 <% @posted_questions.reverse_each  do |question| %>
       <div class="posted_questions">
-        <a href="./questions/<%= question.id %>">
+        <p><a href="./questions/<%= question.id %>">
           <%= question.question_description%></a>
+        /<%= question.user.first_name %> <%= question.user.last_name %></p>
       </div>
 
-      
+ <!-- answer form -->    
     <form action= '/questions/<%= question.id %>/answers' method="post">
 	<p><input type="text" name="description" class="form"
-	placeholder="what is your answer ?">
+	placeholder="answer the question">
 	<input type="hidden" value=<%= question.id %> name="question_id"><p>
 	<p class = "post_bottun"><input type="submit" value="post answer"></p>
 
@@ -37,6 +42,7 @@
 	
 
 </section>
+
 
 <!-- if sign up is faild, display the messages
  -->
@@ -49,4 +55,3 @@
 </p>
 
 </div>
-

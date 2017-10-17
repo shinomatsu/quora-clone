@@ -1,15 +1,14 @@
 <div id="main">
 	<p>name:
 	 <% @user = User.find(params[:id])%>
-     <%=@user.first_name %>
-        <%=@user.last_name %>
+     <%=@user.first_name %> <%=@user.last_name %>
      </p>
 
     <!-- go dashboard -->
 	<section class="dashboard">
-    <p>go dashboard</p>
     <form action= '/dashboard' method="get">
-	<p class = "bottun"><input type="submit" value="dashboard"></p>
+	<p class = "bottun"><input type="submit" value="dashboard">
+	</p>
     </form>
     </section>
 
@@ -22,7 +21,7 @@
 
 	 <!-- all user's question and edit-->
 	 <section class="user_question">
-	 <h4>my all question</h4>
+	 <h2>my all question</h2>
 
 	  <div class="posted_question">
 	  <% @user.questions.each do |questions| %>
@@ -31,7 +30,7 @@
 	  <div class="edit">
 	  <% if current_user.id == @user.id %> 
       <form action= '/questions/<%= questions.id %>/edit' method="get">
-            <p class = "bottun"><input type="submit" value="edit"></p>
+            <p class = "bottun_edit"><input type="submit" value="edit"></p>
       </form>
       <% end %>
       </div>
@@ -42,7 +41,7 @@
 
 	      <!-- all user's answer -->
 	 <section class="user_answer">
-	 <h4>my all answer</h4>
+	 <h2>my all answer</h2>
 	 <div class="posted_answer">
 	  <% @user.answers.each do |answers| %>
 	  <p><%= answers.answer_description %></p>
@@ -51,7 +50,7 @@
 	    <div class="edit">
 	    <% if current_user.id == @user.id %> 
 	      <form action= '/answers/<%= answers.id %>/edit' method="get">
-	            <p class = "bottun"><input type="submit" value="edit"></p>
+	            <p class = "bottun_edit"><input type="submit" value="edit"></p>
 	      </form>
 	    <% end %>
       </div> 

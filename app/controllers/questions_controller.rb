@@ -23,7 +23,7 @@ get '/questions/:id' do
 
 if logged_in?
 
-    erb :'static/new'
+    erb :'questions/new'
   else
     redirect '/login'
   end
@@ -33,7 +33,6 @@ end
 
 get '/dashboard' do
    all_posted
-  
   if logged_in?
     erb :'static/dashboard'
   else

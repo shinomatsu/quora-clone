@@ -13,7 +13,7 @@ post '/questions/:id/answers' do
     redirect "/questions/#{@answer.question_id}/answers/#{@answer.id}"
   else
     @errors = @answer.errors.full_messages.join(" ,") #capturing error messages thrown from validation tests udner app/models/question.rb
-    erb :'static/new'
+    erb :'questions/new'
  
     
   end
@@ -23,7 +23,7 @@ get '/questions/:question_id/answers/:id' do
 
 if logged_in?
 
-    erb :'static/new_answer'
+    erb :'answers/new'
   else
     redirect '/login'
   end

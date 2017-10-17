@@ -41,6 +41,7 @@ get '/login' do
 end
 
 
+
 get "/users/:id" do
 
 	if logged_in?
