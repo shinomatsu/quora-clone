@@ -6,7 +6,7 @@
 <!-- if answer is faild, display the messages
  -->
 <p class="error">
-<%if @answer  %>
+<%if @answer || @upvote || @downvote  %>
 
 <section class="message"><%= @errors if @errors%></section>
 
@@ -17,7 +17,7 @@
 <section class="dashboard">
     <form action= '/dashboard' method="get">
       <p class = "bottun"><input type="submit" value="dashboard"></p>
-
+  </form>
 </section>
 
 
@@ -40,15 +40,13 @@
 <section class="answer">
 
  <form action= '/questions/<%= params[:id] %>/answers' method="post">
-	<p><input type="text" name="description" class="form"
+	<input type="text" name="description" class="form_answer"
 	placeholder="what is your answer ?">
-	<input type="hidden" value=<%= params[:id] %> name="question_id"><p>
+	<input type="hidden" value=<%= params[:id] %> name="question_id">
 	<p class = "bottun_post"><input type="submit" value="post"></p>
 
 </form>
 </section>
-
-
 
 <!-- display answer -->
 <p>answer<p>
@@ -59,14 +57,32 @@
       	<p><%= answers.answer_description %>/
       	<%= answers.user.first_name %>
       	<%= answers.user.last_name %></p>
-      	<% end%>
+      	
 
-      </div>
+    
+
+<!-- vote   -->
+<section class="vote">   
+    <div style="display:inline-flex">
+    
+      <form action= '/questions/<%=params[:id] %>/answers/<%= answers.id %>/upvote' method="post">
+       <input type="hidden" value=<%= 1 %> name="good">
+       <p class = "bottun_1"><input type="submit" value="upvote">
+       </p>
+      </form>
+      <form action= '/questions/<%=params[:id] %>/answers/<%= answers.id %>/downvote' method="post">
+        <input type="hidden" value=<%= 0 %> name="bad">
+        <p class = "bottun_1"><input type="submit" value="downvote">
+      </p>
+      </form>
+   </div>
+    </section>
+
+    <% end%>
 	
-
+    </div>
 </section>
 
- </div>
 
 
 
