@@ -100,7 +100,9 @@ body {
 
 }
 
-.form{
+.form_answer{
+  width:250px;
+  height:100px;
 
 }
 .bottun  {
